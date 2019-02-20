@@ -1,0 +1,14 @@
+#php_flag display_startup_errors on
+#php_flag display_errors on
+#php_flag html_errors on
+
+#php_value date.timezone 'Asia/Yekaterinburg'
+#php_value session.auto_start 1
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php [L]
+</IfModule>
+Options -Indexes
