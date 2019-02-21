@@ -35,9 +35,9 @@ abstract class GenericController {
      * @param GenericService $service
      * @return GenericController
      */
-    public static function controller(string $name, GenericService $service, Responder $responder) : GenericController {
+    public static function controller(string $name, GenericService $service, Responder $responder, IRouter $router) : GenericController {
         $class = __NAMESPACE__ . '\\' . $name;
-        return new $class($service, $responder);
+        return new $class($service, $responder, $router);
     }
 
     /**
