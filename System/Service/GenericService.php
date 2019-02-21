@@ -1,9 +1,7 @@
 <?php
 namespace Evie\Monitor\System\Service;
 
-use Evie\Monitor\System\Controller\GenericController;
 use Evie\Monitor\System\Request\Request;
-use Evie\Monitor\System\Response\IResponse;
 
 /**
  * Class GenericService
@@ -33,7 +31,8 @@ abstract class GenericService {
      * @return GenericService
      */
     public static function service(string $name, Request $request) : GenericService {
-        $class = __NAMESPACE__ . ucfirst($name . 'service');
+        $service = str_replace('Service', '', $name);
+        $class = __NAMESPACE__ . "\\$service\\" . $name;
         return new $class($request);
     }
 }

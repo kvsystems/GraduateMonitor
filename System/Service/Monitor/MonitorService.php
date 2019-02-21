@@ -1,5 +1,5 @@
 <?php
-namespace Evie\Monitor\System\Monitor;
+namespace Evie\Monitor\System\Service\Monitor;
 
 use Evie\Monitor\System\Monitor\Command\CommandFactory;
 use Evie\Monitor\System\Request\Request;

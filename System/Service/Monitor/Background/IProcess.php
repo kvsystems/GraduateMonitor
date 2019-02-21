@@ -1,5 +1,5 @@
 <?php
-namespace Evie\Monitor\System\Monitor\Background;
+namespace Evie\Monitor\System\Service\Monitor\Background;
 
 /**
  * Interface IProcess.
