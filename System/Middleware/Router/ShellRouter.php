@@ -16,7 +16,7 @@ class ShellRouter implements IRouter  {
 
     /**
      * Application response.
-     * @var $_responder IResponse
+     * @var $_responder Responder
      */
     private $_responder;
 
