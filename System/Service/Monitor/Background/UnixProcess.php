@@ -13,7 +13,6 @@ class UnixProcess implements IProcess {
      * @return int
      */
     public function run(string $command = '') : int {
-        var_dump($command);
         return (int) shell_exec(
             sprintf('%s %s %s 2>&1 & echo $!', $command, (false) ? '>>' : '>', '/dev/null')
         );

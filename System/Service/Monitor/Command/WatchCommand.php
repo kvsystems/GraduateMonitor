@@ -36,7 +36,6 @@ class WatchCommand implements ICommand {
      * @return bool
      */
     public function execute(): bool {
-        var_dump(1);
         $process = new BackgroundProcess();
         $process->run('php ' . ROOT_DIR . 'index.php -m monitor -r monitor/watch' );
         $this->_pid = $process->getPid();
