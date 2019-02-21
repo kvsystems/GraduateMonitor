@@ -11,6 +11,7 @@ class KeysFactory {
     const ROUTE   = 'r';
     const SERVER  = 'i';
     const IP      = 'a';
+    const LIST    = 'l';
 
     /**
      * Gets a new parameter with value.
@@ -31,6 +32,9 @@ class KeysFactory {
                 break;
             case self::IP:
                 $param = new IpaKey($value);
+                break;
+            case self::LIST:
+                $param = new ListKey($value);
                 break;
             default:
                 $param = new DefaultKey($value);
