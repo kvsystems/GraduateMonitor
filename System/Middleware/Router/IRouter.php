@@ -25,7 +25,7 @@ interface IRouter extends IHandler {
      * @param Request $request
      * @return IResponse
      */
-    public function route(Request $request);
+    public function route();
 
     /**
      * Registers handler.
@@ -39,6 +39,6 @@ interface IRouter extends IHandler {
      * @param Request $request
      * @return IResponse
      */
-    public function handle(Request $request): IResponse;
+    public function handle(): IResponse;
 
 }

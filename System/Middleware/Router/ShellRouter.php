@@ -6,6 +6,7 @@ use Evie\Monitor\System\Controller\Responder;
 use Evie\Monitor\System\Middleware\Base\Middleware;
 use Evie\Monitor\System\Request\Request;
 use Evie\Monitor\System\Response\IResponse;
+use Evie\Monitor\System\Controller\GenericController;
 
 /**
  * Class ShellRouter.
@@ -33,15 +34,22 @@ class ShellRouter implements IRouter  {
     private $_routes = [];
 
     /**
+     * Application request.
+     * @var $_request Request
+     */
+    private $_request;
+
+    /**
      * Sets responder and available routes.
      * ShellRouter constructor.
      * @param Responder $responder
      * @param array $routes
      */
-    public function __construct(Responder $responder, array $routes){
+    public function __construct(Responder $responder, array $routes, Request $request){
         $this->_responder = $responder;
         $config = new Config();
         $this->_routes = $config->getRoutes();
+        $this->_request = $request;
     }
 
     /**
@@ -49,8 +57,8 @@ class ShellRouter implements IRouter  {
      * @param Request $request
      * @return array
      */
-    private function _match(Request $request) : array {
-        $path = $request->path()->value();
+    private function _match() : array {
+        $path = $this->_request->path()->value();
         $match =  isset($this->_routes[$path])
             ? explode('@', $this->_routes[$path])
             : explode('@', $this->_routes[0]);
@@ -63,9 +71,9 @@ class ShellRouter implements IRouter  {
      * @param Request $request
      * @return IResponse
      */
-    public function handle(Request $request) : IResponse {
-        $controller = $this->_match($request);
-        return call_user_func($controller, $request);
+    public function handle() : IResponse {
+        $controller = $this->_match();
+        return call_user_func($controller, $this->_request);
     }
 
     /**
@@ -83,17 +91,20 @@ class ShellRouter implements IRouter  {
      * @param Request $request
      * @return IResponse
      */
-    public function route(Request $request)  : IResponse  {
+    public function route()  : IResponse  {
         return count($this->_middleware) > 0
-            ? $this->_middleware[0]->handle($request)
-            : $this->handle($request);
+            ? $this->_middleware[0]->handle()
+            : $this->handle();
     }
 
     /**
-     * Register controller route.
+     * Registers handler.
+     * @param GenericController $handler
+     * @param string $action
      */
-    public function register(string $path, array $handler)  {
-
+    public function register(GenericController $handler, string $action)  {
+        $parts = explode('/', trim($path, '/'));
+        array_unshift($parts, $method);
     }
 
     /**
@@ -101,8 +112,8 @@ class ShellRouter implements IRouter  {
      * @param Request $request
      * @return string
      */
-    public function controller(Request $request) : string  {
-        return $this->_match($request)[0];
+    public function controller() : string  {
+        return $this->_match()[0];
     }
 
     /**
@@ -110,8 +121,8 @@ class ShellRouter implements IRouter  {
      * @param Request $request
      * @return string
      */
-    public function action(Request $request) : string {
-        return $this->_match($request)[1];
+    public function action() : string {
+        return $this->_match()[1];
     }
 
     /**
@@ -119,7 +130,7 @@ class ShellRouter implements IRouter  {
      * @param Request $request
      * @return string
      */
-    public function service(Request $request) : string {
-        return str_replace('Controller', 'Service', $this->_match($request)[0]);
+    public function service() : string {
+        return str_replace('Controller', 'Service', $this->_match()[0]);
     }
 }

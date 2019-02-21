@@ -13,7 +13,7 @@ use Evie\Monitor\System\Controller\GenericController;
  */
 class DefaultRouter implements IRouter  {
 
-    public function handle(Request $request) : IResponse  {
+    public function handle() : IResponse  {
         // TODO: Implement handle() method.
     }
 
@@ -21,7 +21,7 @@ class DefaultRouter implements IRouter  {
         // TODO: Implement load() method.
     }
 
-    public function route(Request $request)    {
+    public function route()    {
         // TODO: Implement route() method.
     }
 

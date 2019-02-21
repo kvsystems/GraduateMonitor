@@ -13,7 +13,7 @@ class FirewallMiddleware extends Middleware {
      * @param Request $request
      * @return IResponse
      */
-    public function handle(Request $request) : IResponse  {
+    public function handle() : IResponse  {
         return new DefaultResponse();
     }
 }
