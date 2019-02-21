@@ -1,6 +1,7 @@
 <?php
 namespace Evie\Monitor\System\Middleware\Router;
 
+use Evie\Monitor\System\Controller\Responder;
 use Evie\Monitor\System\Middleware\Base\Middleware;
 use Evie\Monitor\System\Request\Request;
 
@@ -11,19 +12,40 @@ use Evie\Monitor\System\Request\Request;
  */
 class ShellRouter implements IRouter  {
 
+    /**
+     * Application response.
+     * @var $_responder IResponse
+     */
+    private $_responder;
+
+    /**
+     * Middleware list.
+     * @var $_middleware array
+     */
     private $_middleware = [];
+
+    /**
+     * Handlers list.
+     * @var $_handlers array
+     */
     private $_handlers   = [];
 
-    public function __construct(array $routes){
+    public function __construct(Responder $responder, array $routes){
+        $this->_responder = $responder;
+    }
 
+    private function numbers(Request $request) : array {
+        $path = explode('/', trim($request->path(), '/'));
+        //array_unshift($path, $method);
+        return $this->_routes->match($path);
     }
 
     public function handle(Request $request)   {
-
-    }
-
-    public function register()  {
-        // TODO: Implement register() method.
+        $routeNumbers = $this->_getRouteNumbers($request);
+        if (count($routeNumbers) == 0) {
+            return $this->_responder->error();
+        }
+        return call_user_func($this->_routeHandlers[$routeNumbers[0]], $request);
     }
 
     public function load(Middleware $middleware)    {

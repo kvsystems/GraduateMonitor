@@ -1,5 +1,7 @@
 <?php
 namespace Evie\Monitor\System\Middleware\Router;
+use Evie\Monitor\System\Controller\Responder;
+
 
 /**
  * Class RouterFactory.
@@ -8,24 +10,23 @@ namespace Evie\Monitor\System\Middleware\Router;
  */
 class RouterFactory {
 
-    const MONITOR   = 'monitor';
     const HTTP      = 'http';
     const SHELL     = 'shell';
 
     /**
+     * Creates a type of router.
      * @param string $type
+     * @param Responder $responder
+     * @param array $routes
      * @return IRouter
      */
-    public static function router(string $type, array $routes) : IRouter {
+    public static function router(string $type, Responder $responder, array $routes) : IRouter {
         switch($type) {
-            case self::MONITOR:
-                $response = new MonitorRouter($routes);
-                break;
             case self::HTTP:
                 $response = new HttpRouter($routes);
                 break;
             case self::SHELL:
-                $response = new ShellRouter($routes);
+                $response = new ShellRouter($responder, $routes);
                 break;
             default:
                 $response = new DefaultRouter();
