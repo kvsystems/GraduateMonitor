@@ -50,9 +50,9 @@ class MonitorController extends GenericController {
      * @return IResponse
      */
     public function observer() : IResponse {
-        $this->service->on();
-        while(true) $this->service->observe();
-        return $this->responder->success();
+        return $this->service->on() && $this->service->observe()
+            ? $this->responder->error()
+            : $this->responder->success();
     }
 
     /**
@@ -63,6 +63,15 @@ class MonitorController extends GenericController {
         return $this->service->disable()
             ? $this->responder->error()
             : $this->responder->success();
+    }
+
+    /**
+     * Stops processes and observer.
+     * @return IResponse
+     */
+    public function watcher() : IResponse  {
+        while(true) $this->service->watch();
+        return $this->responder->success();
     }
 
     /**

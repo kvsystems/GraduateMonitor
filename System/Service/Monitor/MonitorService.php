@@ -95,10 +95,21 @@ class MonitorService extends GenericService {
     }
 
     /**
-     * Watches processes.
+     * Run processes watcher.
      * @return bool
      */
     public function observe() : bool {
+        $service = CommandFactory::command('watch', $this->request);
+        return $service->execute()
+            ? Transmit::create('post', $this->request, $this->hosts['crud'], [$service->pid()])->send()
+            : false;
+    }
+
+    /**
+     * Watches processes.
+     * @return bool
+     */
+    public function watch() : bool {
         for($i = 0; $i < 100; $i++)   {
             echo 'Run: ' . $i . PHP_EOL;
             sleep(2);
