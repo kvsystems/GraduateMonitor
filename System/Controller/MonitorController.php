@@ -52,7 +52,7 @@ class MonitorController {
     /**
      * The monitor background cycle.
      */
-    public function polling() : IResponse {
+    public function polling() {
          while(true) $this->_service->pollTarget();
     }
 
