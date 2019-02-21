@@ -15,6 +15,7 @@ class CommandFactory {
     const RESTART = 'restart';
     const ON      = 'on';
     const OFF     = 'off';
+    const WATCHER = 'watch';
 
     /**
      * Creates a command.
@@ -38,6 +39,9 @@ class CommandFactory {
                 break;
             case self::ON:
                 $result = new OnCommand($request);
+                break;
+            case self::WATCHER:
+                $result = new WatchCommand($request);
                 break;
             default:
                 $result = new DefaultCommand();
