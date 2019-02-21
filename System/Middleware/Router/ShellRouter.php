@@ -50,11 +50,12 @@ class ShellRouter implements IRouter  {
      * @return array
      */
     private function _match(Request $request) : array {
-        $path = str_replace('/', '@', $request->path());
-        var_dump($path);
-        return in_array($path, $this->_routes)
-            ? explode('@', $path, '@')
-            : explode('@', $this->_routes[0], '@');
+        $path = $request->path()->value();
+        $match =  isset($this->_routes[$path])
+            ? explode('@', $this->_routes[$path])
+            : explode('@', $this->_routes[0]);
+        $match[0] = ucfirst($match[0] . 'Controller');
+        return $match;
     }
 
     /**
@@ -86,6 +87,33 @@ class ShellRouter implements IRouter  {
         return count($this->_middleware) > 0
             ? $this->_middleware[0]->handle($request)
             : $this->handle($request);
+    }
+
+    /**
+     * Gets controller.
+     * @param Request $request
+     * @return string
+     */
+    public function controller(Request $request) : string  {
+        return $this->_match($request)[0];
+    }
+
+    /**
+     * Gets action.
+     * @param Request $request
+     * @return string
+     */
+    public function action(Request $request) : string {
+        return $this->_match($request)[1];
+    }
+
+    /**
+     * Gets action.
+     * @param Request $request
+     * @return string
+     */
+    public function service(Request $request) : string {
+        return str_replace('Controller', 'Service', $this->_match($request)[0]);
     }
 
 }
