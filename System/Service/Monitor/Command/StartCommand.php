@@ -39,7 +39,7 @@ class StartCommand implements ICommand {
     public function execute(): bool {
         $process = new BackgroundProcess();
         $ipa = $this->_request->parameter('ipa')->value();
-        if($ipa) $process->run('php ' . ROOT_DIR . 'index.php -m monitor -r monitor/poll -ip ' . $ipa );
+        if($ipa) $process->run('php ' . ROOT_DIR . 'index.php -m monitor -r monitor/poll -a ' . $ipa );
         $this->_pid = $process->getPid();
         return $this->_pid ? true : false;
     }
