@@ -10,6 +10,12 @@ use Evie\Monitor\System\Middleware\Router\IRouter;
 abstract class Middleware implements IHandler    {
 
     /**
+     * Next handler.
+     * @var $next IHandler
+     */
+    protected $next;
+
+    /**
      * Middleware constructor.
      * Sets the type of intermediate processing.
      * @param IRouter $router
