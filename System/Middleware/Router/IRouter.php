@@ -12,7 +12,17 @@ use Evie\Monitor\System\Request\Request;
  */
 interface IRouter extends IHandler {
 
+    /**
+     * Loads middleware.
+     * @param Middleware $middleware
+     */
     public function load(Middleware $middleware);
+
+    /**
+     * Handles route.
+     * @param Request $request
+     * @return IResponse
+     */
     public function route(Request $request);
 
 }

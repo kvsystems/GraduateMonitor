@@ -51,6 +51,7 @@ class ShellRouter implements IRouter  {
      */
     private function _match(Request $request) : array {
         $path = str_replace('/', '@', $request->path());
+        var_dump($path);
         return in_array($path, $this->_routes)
             ? explode('@', $path, '@')
             : explode('@', $this->_routes[0], '@');
@@ -77,7 +78,7 @@ class ShellRouter implements IRouter  {
     }
 
     /**
-     * Handles middleware.
+     * Handles route.
      * @param Request $request
      * @return IResponse
      */
