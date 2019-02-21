@@ -1,7 +1,6 @@
 <?php
 namespace Evie\Monitor\System\Request;
 
-use Evie\Monitor\System\Request\Keys\GenericKey;
 use Evie\Monitor\System\Request\Keys\KeysFactory;
 
 /**
@@ -22,15 +21,5 @@ class ShellRequest extends Request {
                 $this->params[KeysFactory::key($obj)] = $obj;
             }
         }
-    }
-
-    /**
-     * Gets route path.
-     * @return GenericKey
-     */
-    public function path() : GenericKey {
-        return isset($this->params['route'])
-            ? $this->params['route']
-            : KeysFactory::parameter('default', 'default');
     }
 }
