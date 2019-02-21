@@ -1,7 +1,7 @@
 <?php
 namespace Evie\Monitor\System\Service\Monitor;
 
-use Evie\Monitor\System\Monitor\Command\CommandFactory;
+use Evie\Monitor\System\Service\Monitor\Command\CommandFactory;
 use Evie\Monitor\System\Request\Request;
 use Evie\Monitor\System\Service\GenericService;
 use Evie\Monitor\System\Transmit\Transmit;
@@ -31,9 +31,9 @@ class MonitorService extends GenericService {
      * @return bool
      */
     public function startService() : bool {
-        $service = CommandFactory::command('start', $this->_request);
+        $service = CommandFactory::command('start', $this->request);
         return $service->execute()
-            ? Transmit::create('post', $this->_request, $this->hosts['crud'], [$service->pid()])->send()
+            ? Transmit::create('post', $this->request, $this->hosts['crud'], [$service->pid()])->send()
             : false;
     }
 
@@ -42,10 +42,10 @@ class MonitorService extends GenericService {
      * @return bool
      */
     public function stopService() : bool {
-        $service = CommandFactory::command('stop', $this->_request);
+        $service = CommandFactory::command('stop', $this->request);
         $result = $service->execute();
         return $result
-            ? Transmit::create('post', $this->_request, $this->hosts['crud'], [$result])->send()
+            ? Transmit::create('post', $this->request, $this->hosts['crud'], [$result])->send()
             : false;
     }
 
@@ -54,9 +54,9 @@ class MonitorService extends GenericService {
      * @return bool
      */
     public function restartService() : bool  {
-        $service = CommandFactory::command('restart', $this->_request);
+        $service = CommandFactory::command('restart', $this->request);
         return $service->execute()
-            ? Transmit::create('post', $this->_request, $this->hosts['crud'], [$service->pid()])->send()
+            ? Transmit::create('post', $this->request, $this->hosts['crud'], [$service->pid()])->send()
             : false;
     }
 
