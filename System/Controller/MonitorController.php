@@ -1,10 +1,10 @@
 <?php
 namespace Evie\Monitor\System\Controller;
 
-use Evie\Monitor\System\Middleware\Router\IRouter;
 use Evie\Monitor\System\Monitor\MonitorService;
 use Evie\Monitor\System\Response\DefaultResponse;
 use Evie\Monitor\System\Response\IResponse;
+use Evie\Monitor\System\Service\GenericService;
 
 class MonitorController extends GenericController {
 
@@ -26,7 +26,7 @@ class MonitorController extends GenericController {
      * @param MonitorService $service
      * @param Responder $responder
      */
-    public function __construct(MonitorService $service, Responder $responder)   {
+    public function __construct(GenericService $service, Responder $responder)   {
         $this->_service   = $service;
         $this->_responder = $responder;
     }

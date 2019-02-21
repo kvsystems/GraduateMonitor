@@ -1,7 +1,6 @@
 <?php
 namespace Evie\Monitor\System\Controller;
 
-use Evie\Monitor\System\Middleware\Router\IRouter;
 use Evie\Monitor\System\Response\IResponse;
 use Evie\Monitor\System\Service\GenericService;
 
@@ -18,7 +17,7 @@ abstract class GenericController {
      * @return GenericController
      */
     public static function controller(string $name, GenericService $service, Responder $responder) : GenericController {
-        $class = __NAMESPACE__ . ucfirst($name . 'Controller');
+        $class = __NAMESPACE__ . '\\' . $name;
         return new $class($service, $responder);
     }
 
