@@ -90,6 +90,13 @@ class ShellRouter implements IRouter  {
     }
 
     /**
+     * Register controller route.
+     */
+    public function register(string $path, array $handler)  {
+
+    }
+
+    /**
      * Gets controller.
      * @param Request $request
      * @return string
@@ -115,5 +122,4 @@ class ShellRouter implements IRouter  {
     public function service(Request $request) : string {
         return str_replace('Controller', 'Service', $this->_match($request)[0]);
     }
-
 }

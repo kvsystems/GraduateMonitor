@@ -3,6 +3,7 @@ namespace Evie\Monitor\System\Middleware\Router;
 
 use Evie\Monitor\System\Middleware\Base\Middleware;
 use Evie\Monitor\System\Request\Request;
+use Evie\Monitor\System\Response\IResponse;
 
 /**
  * Class DefaultRouter.
@@ -11,7 +12,7 @@ use Evie\Monitor\System\Request\Request;
  */
 class DefaultRouter implements IRouter  {
 
-    public function handle(Request $request)   {
+    public function handle(Request $request) : IResponse  {
         // TODO: Implement handle() method.
     }
 
@@ -21,6 +22,13 @@ class DefaultRouter implements IRouter  {
 
     public function route(Request $request)    {
         // TODO: Implement route() method.
+    }
+
+    /**
+     * Register controller route.
+     */
+    public function register(string $path, array $handler)  {
+
     }
 
 }
