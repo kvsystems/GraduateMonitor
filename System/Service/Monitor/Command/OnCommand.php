@@ -54,6 +54,10 @@ class OnCommand implements ICommand {
      * @return int
      */
     public function pid(): int  {
+        return 0;
+    }
+
+    public function list(): string  {
         return implode( ',', $this->_list);
     }
 }
