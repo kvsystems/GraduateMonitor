@@ -50,10 +50,10 @@ class OnCommand implements ICommand {
     }
 
     /**
-     * Gets process identifier.
+     * Gets process identifiers.
      * @return int
      */
     public function pid(): int  {
-        return 0;
+        return $this->_list;
     }
 }
