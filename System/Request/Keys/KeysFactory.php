@@ -9,7 +9,7 @@ class KeysFactory {
 
     const MODE    = 'm';
     const ROUTE   = 'r';
-    const SERVER  = 's';
+    const SERVER  = 'i';
 
     /**
      * Gets a new parameter with value.
