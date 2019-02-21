@@ -3,16 +3,11 @@ namespace Evie\Monitor\System\Monitor;
 
 use Evie\Monitor\System\Monitor\Command\CommandFactory;
 use Evie\Monitor\System\Request\Request;
+use Evie\Monitor\System\Service\GenericService;
 use Evie\Monitor\System\Transmit\Transmit;
 use Evie\Monitor\System\Config;
 
-class MonitorService {
-
-    /**
-     * Application request.
-     * @var $_request Request
-     */
-    private $_request;
+class MonitorService extends GenericService {
 
     /**
      * Remote hosts.
@@ -26,9 +21,9 @@ class MonitorService {
      * @param Request $request
      */
     public function __construct(Request $request)   {
+        parent::__construct($request);
         $config         = new Config();
         $this->hosts    = $config->getHosts();
-        $this->_request = $request;
     }
 
     /**
