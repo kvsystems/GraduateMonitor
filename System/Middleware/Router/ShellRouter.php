@@ -78,7 +78,6 @@ class ShellRouter implements IRouter  {
      * @return IResponse
      */
     public function handle() : IResponse {
-        var_dump($this->_handler);
         return ($this->_match()[1] == 'default')
             ? $this->_responder->error()
             : call_user_func($this->_handler, $this->_request);
