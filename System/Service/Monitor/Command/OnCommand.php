@@ -33,7 +33,7 @@ class OnCommand implements ICommand {
     }
 
     /**
-     * Executes default command.
+     * Starts server lists
      * @return bool
      */
     public function execute(): bool {
