@@ -33,15 +33,27 @@ abstract class Request {
         $this->handle();
     }
 
+    /**
+     * Gets a request parameter.
+     * @param string $name
+     * @return GenericKey
+     */
     public function parameter(string $name) : GenericKey {
         return isset($this->params[$name])
             ? $this->params[$name]
             : KeysFactory::parameter('default', 'default');
     }
 
+    /**
+     * Gets all request parameters.
+     * @return array
+     */
     public function parameters() : array {
-        return $this->options;
+        return $this->params;
     }
 
+    /**
+     * Handle request parameters.
+     */
     public abstract function handle();
 }

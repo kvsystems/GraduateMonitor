@@ -6,11 +6,11 @@ namespace Evie\Monitor\System\Request;
  * Rejects request type.
  * @package Evie\MonitorController\System\Request
  */
-class DefaultRequest implements IRequest    {
+class DefaultRequest extends Request    {
 
     public function __construct(array $options = [])    {}
-    public function getParams() {
+
+    public function handle()    {
 
     }
-
 }

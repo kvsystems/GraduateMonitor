@@ -6,7 +6,7 @@ namespace Evie\Monitor\System\Request;
  * HTTP request processing.
  * @package Evie\MonitorController\System\Request
  */
-class HttpRequest implements IRequest {
+class HttpRequest extends Request {
 
     /**
      * Request options
@@ -28,43 +28,7 @@ class HttpRequest implements IRequest {
         $this->_parseBody();
     }
 
-    public function getParams() {
+    public function handle()    {
 
     }
-
-    /**
-     * Handles request method.
-     */
-    private function _parseMethod() {
-
-    }
-
-    /**
-     * Handles request path.
-     */
-    private function _parsePath()   {
-
-    }
-
-    /**
-     * Handles request parameters.
-     */
-    private function _parseParams() {
-
-    }
-
-    /**
-     * Handle request headers.
-     */
-    private function _parseHeaders()    {
-
-    }
-
-    /**
-     * Handles request body.
-     */
-    private function _parseBody()   {
-
-    }
-
 }
