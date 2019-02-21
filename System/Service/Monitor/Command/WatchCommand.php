@@ -1,6 +1,9 @@
 <?php
 namespace Evie\Monitor\System\Service\Monitor\Command;
 
+use Evie\Monitor\System\Service\Monitor\Background\BackgroundProcess;
+use Evie\Monitor\System\Request\Request;
+
 /**
  * Class WatchCommand.
  * Rejects the execution of the system command.
@@ -33,8 +36,9 @@ class WatchCommand implements ICommand {
      * @return bool
      */
     public function execute(): bool {
+        var_dump(1);
         $process = new BackgroundProcess();
-        $process->run('php ' . ROOT_DIR . 'index.php -m monitor -r monitor/watcher' );
+        $process->run('php ' . ROOT_DIR . 'index.php -m monitor -r monitor/watch' );
         $this->_pid = $process->getPid();
         return $this->_pid ? true : false;
     }

@@ -50,7 +50,9 @@ class MonitorController extends GenericController {
      * @return IResponse
      */
     public function observer() : IResponse {
-        return $this->service->on() && $this->service->observe()
+        $runner = $this->service->on();
+        $observer = $this->service->observe();
+        return ($runner && $observer)
             ? $this->responder->error()
             : $this->responder->success();
     }
