@@ -30,8 +30,9 @@ class MonitorController extends GenericController {
     /**
      * The monitor background cycle.
      */
-    public function polling() {
-         while(true) $this->service->pollTarget();
+    public function polling() : IResponse {
+        while(true) $this->service->pollTarget();
+        return $this->responder->success();
     }
 
     /**
