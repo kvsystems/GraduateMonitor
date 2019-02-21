@@ -1,6 +1,7 @@
 <?php
 namespace Evie\Monitor\System\Service\Monitor;
 
+use Evie\Monitor\System\Request\Keys\KeysFactory;
 use Evie\Monitor\System\Service\Monitor\Command\CommandFactory;
 use Evie\Monitor\System\Request\Request;
 use Evie\Monitor\System\Service\GenericService;
@@ -79,7 +80,7 @@ class MonitorService extends GenericService {
     public function on() : bool {
         $service = CommandFactory::command('on', $this->request);
         $service->execute();
-        if($service->list()) $this->request->set('list',$service->pid());
+        if($service->list()) $this->request->set('list', KeysFactory::parameter('l', $service->list()));
         return $service->list()
             ? Transmit::create('post', $this->request, $this->hosts['crud'], [$service->list()])->send()
             : false;

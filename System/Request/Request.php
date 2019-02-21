@@ -70,6 +70,7 @@ abstract class Request {
      */
     public function set(string $key, $value) : bool  {
         $this->params[$key] = $value;
+        return true;
     }
 
     /**
