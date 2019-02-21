@@ -1,6 +1,7 @@
 <?php
 namespace Evie\Monitor\System\Middleware\Router;
 
+use Evie\Monitor\System\Controller\GenericController;
 use Evie\Monitor\System\Middleware\Base\IHandler;
 use Evie\Monitor\System\Middleware\Base\Middleware;
 use Evie\Monitor\System\Request\Request;
@@ -27,9 +28,11 @@ interface IRouter extends IHandler {
     public function route(Request $request);
 
     /**
-     * Register controller route.
+     * Registers handler.
+     * @param GenericController $handler
+     * @param string $action
      */
-    public function register(string $path, array $handler);
+    public function register(GenericController $handler, string $action);
 
     /**
      * Handles request.

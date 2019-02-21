@@ -4,6 +4,7 @@ namespace Evie\Monitor\System\Middleware\Router;
 use Evie\Monitor\System\Middleware\Base\Middleware;
 use Evie\Monitor\System\Request\Request;
 use Evie\Monitor\System\Response\IResponse;
+use Evie\Monitor\System\Controller\GenericController;
 
 /**
  * Class HttpRouter.
@@ -29,9 +30,11 @@ class HttpRouter implements IRouter  {
     }
 
     /**
-     * Register controller route.
+     * Registers handler.
+     * @param GenericController $handler
+     * @param string $action
      */
-    public function register(string $path, array $handler)  {
+    public function register(GenericController $handler, string $action)  {
 
     }
 
