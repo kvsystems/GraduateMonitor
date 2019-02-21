@@ -4,32 +4,8 @@ namespace Evie\Monitor\System\Controller;
 use Evie\Monitor\System\Monitor\MonitorService;
 use Evie\Monitor\System\Response\DefaultResponse;
 use Evie\Monitor\System\Response\IResponse;
-use Evie\Monitor\System\Service\GenericService;
 
 class MonitorController extends GenericController {
-
-    /**
-     * Monitor service.
-     * @var $_service MonitorService
-     */
-    private $_service;
-
-    /**
-     * Application responder.
-     * @var $_responder Responder
-     */
-    private $_responder;
-
-    /**
-     * Sets service and responder.
-     * MonitorController constructor.
-     * @param MonitorService $service
-     * @param Responder $responder
-     */
-    public function __construct(GenericService $service, Responder $responder)   {
-        $this->_service   = $service;
-        $this->_responder = $responder;
-    }
 
     /**
      * Starts the monitor background application.
