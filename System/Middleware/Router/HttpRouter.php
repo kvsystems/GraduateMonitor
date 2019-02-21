@@ -19,10 +19,6 @@ class HttpRouter implements IRouter  {
         // TODO: Implement handle() method.
     }
 
-    public function register()  {
-        // TODO: Implement register() method.
-    }
-
     public function load(Middleware $middleware)    {
         // TODO: Implement load() method.
     }
