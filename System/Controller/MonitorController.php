@@ -1,6 +1,7 @@
 <?php
 namespace Evie\Monitor\System\Controller;
 
+use Evie\Monitor\System\Middleware\Router\IRouter;
 use Evie\Monitor\System\Monitor\MonitorService;
 use Evie\Monitor\System\Response\DefaultResponse;
 use Evie\Monitor\System\Response\IResponse;
