@@ -26,10 +26,10 @@ class CommandFactory {
                 $result = new StartCommand($request);
                 break;
             case self::STOP:
-                $result = new StopCommand(100);
+                $result = new StopCommand($request->parameter('identifier')->value());
                 break;
             case self::RESTART:
-                $result = new RestartCommand($request);
+                $result = new RestartCommand($request->parameter('identifier')->value());
                 break;
             default:
                 $result = new DefaultCommand();

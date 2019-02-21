@@ -27,8 +27,8 @@ class RestartCommand implements ICommand {
      * StartCommand constructor.
      * @param Request $request
      */
-    public function __construct(Request $request)   {
-        $this->_request = $request;
+    public function __construct(int $pid)   {
+        $this->_pid = $pid;
     }
 
     /**
