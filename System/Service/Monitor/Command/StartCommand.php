@@ -38,7 +38,7 @@ class StartCommand implements ICommand {
      */
     public function execute(): bool {
         $process = new BackgroundProcess();
-        $process->run('php ' . ROOT_DIR . 'index.php -m monitor -r monitor/polling' );
+        $process->run('php ' . ROOT_DIR . 'index.php -m monitor -r monitor/poll' );
         $this->_pid = $process->getPid();
         return $this->_pid ? true : false;
     }
