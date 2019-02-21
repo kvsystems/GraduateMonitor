@@ -67,7 +67,7 @@ class MonitorService extends GenericService {
     public function pollTarget() : bool  {
         for($i = 0; $i < 100; $i++)   {
             echo 'Run: ' . $i . PHP_EOL;
-            sleep(15);
+            sleep(2);
         }
         return false;
     }
