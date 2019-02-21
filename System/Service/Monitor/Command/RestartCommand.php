@@ -27,8 +27,9 @@ class RestartCommand implements ICommand {
      * StartCommand constructor.
      * @param Request $request
      */
-    public function __construct(int $pid)   {
+    public function __construct(int $pid, Request $request)   {
         $this->_pid = $pid;
+        $this->_request = $request;
     }
 
     /**
@@ -36,7 +37,8 @@ class RestartCommand implements ICommand {
      * @return bool
      */
     public function execute(): bool {
-        if(CommandFactory::command('stop', $this->_request)->execute()) {
+        if($this->_request->parameter('ipa')->value()
+            && CommandFactory::command('stop', $this->_request)->execute()) {
             $this->_pid = CommandFactory::command('start', $this->_request)->execute();
         }
         return $this->_pid ? true : false;

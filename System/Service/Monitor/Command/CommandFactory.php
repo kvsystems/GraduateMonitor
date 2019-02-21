@@ -29,7 +29,7 @@ class CommandFactory {
                 $result = new StopCommand($request->parameter('identifier')->value());
                 break;
             case self::RESTART:
-                $result = new RestartCommand($request->parameter('identifier')->value());
+                $result = new RestartCommand($request->parameter('identifier')->value(), $request);
                 break;
             default:
                 $result = new DefaultCommand();
