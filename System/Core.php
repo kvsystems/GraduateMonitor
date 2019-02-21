@@ -67,7 +67,7 @@ class Core  {
         $this->_request   = RequestFactory::request();
         $this->_responder = new Responder($config->getResponder());
         $this->_router    = RouterFactory::router(
-            $config->getRouter(), $this->_responder, $config->getRoutes()
+            $config->getRouter(), $this->_responder, $config->getRoutes(), $this->_request
         );
 
         foreach($config->getMiddleware() as $middleware) {
@@ -78,7 +78,7 @@ class Core  {
         $service    = $this->_router->service($this->_request);
 
         GenericController::controller(
-            $controller, GenericService::service($service, $this->_request), $this->_responder
+            $controller, GenericService::service($service, $this->_request), $this->_responder, $this->_router
         );
 
         return $this;
