@@ -48,7 +48,7 @@ abstract class Transmit {
      * @return Transmit
      */
     public static function create(string $method, Request $request, string $host, array $data = []) : Transmit {
-        $class = __NAMESPACE__ . ucfirst($method);
+        $class = __NAMESPACE__ . '\\' . ucfirst($method) . 'Transmit';
         return new $class($request, $host, $data);
     }
 
