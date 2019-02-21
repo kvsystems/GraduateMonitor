@@ -83,7 +83,6 @@ class Core  {
      */
     public function handle() : IResponse {
         $response = $this->_router->route($this->_request);
-        $response = new DefaultResponse();
         return $response;
     }
 
