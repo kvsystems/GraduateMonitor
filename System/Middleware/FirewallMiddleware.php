@@ -14,6 +14,7 @@ class FirewallMiddleware extends Middleware {
      * @return IResponse
      */
     public function handle() : IResponse  {
-        return new DefaultResponse();
+        $response = $this->next->handle();
+        return $response;
     }
 }

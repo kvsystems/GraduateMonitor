@@ -40,6 +40,12 @@ class ShellRouter implements IRouter  {
     private $_request;
 
     /**
+     * Handler.
+     * @var $_handler array
+     */
+    private $_handler = [];
+
+    /**
      * Sets responder and available routes.
      * ShellRouter constructor.
      * @param Responder $responder
@@ -61,7 +67,7 @@ class ShellRouter implements IRouter  {
         $path = $this->_request->path()->value();
         $match =  isset($this->_routes[$path])
             ? explode('@', $this->_routes[$path])
-            : explode('@', $this->_routes[0]);
+            : explode('@', $this->_routes['monitor/default']);
         $match[0] = ucfirst($match[0] . 'Controller');
         return $match;
     }
@@ -72,8 +78,9 @@ class ShellRouter implements IRouter  {
      * @return IResponse
      */
     public function handle() : IResponse {
-        $controller = $this->_match();
-        return call_user_func($controller, $this->_request);
+        return ($this->_match()[1] == 'default')
+            ? $this->_responder->error()
+            : call_user_func($this->_handler, $this->_request);
     }
 
     /**
@@ -103,8 +110,7 @@ class ShellRouter implements IRouter  {
      * @param string $action
      */
     public function register(GenericController $handler, string $action)  {
-        $parts = explode('/', trim($path, '/'));
-        array_unshift($parts, $method);
+        $this->_handler = [$handler, $action];
     }
 
     /**
