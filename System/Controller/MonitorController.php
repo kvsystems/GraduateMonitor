@@ -28,6 +28,16 @@ class MonitorController extends GenericController {
     }
 
     /**
+     * Restarts the monitor background application
+     * @return IResponse
+     */
+    public function restart() : IResponse {
+        return $this->service->restartService()
+            ? $this->responder->error()
+            : $this->responder->success();
+    }
+
+    /**
      * The monitor background cycle.
      */
     public function polling() : IResponse {
