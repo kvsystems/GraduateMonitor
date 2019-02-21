@@ -10,7 +10,7 @@ class KeysFactory {
     const MODE    = 'm';
     const ROUTE   = 'r';
     const SERVER  = 'i';
-    const IP      = 'ip';
+    const IP      = 'a';
 
     /**
      * Gets a new parameter with value.
