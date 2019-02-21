@@ -2,16 +2,17 @@
 namespace Evie\Monitor\System\Request\Keys;
 
 /**
- * Class IdentifierKey
+ * Class IpaKey
  * @package Evie\MonitorController\System\Request\Keys
  */
-class IdentifierKey extends GenericKey {
+class IpaKey extends GenericKey {
 
     /**
-     * Handle identifier key value.
+     * Handle ip address value
      * @param string $value
      */
     public function handle(string $value) {
-        $this->value = (int) $value > 0 ? $value : false;
+        $this->value = $value;
     }
+
 }
