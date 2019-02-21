@@ -74,7 +74,6 @@ class MonitorService {
             echo 'Run: ' . $i . PHP_EOL;
             sleep(15);
         }
-        exit(0);
         return false;
     }
 
