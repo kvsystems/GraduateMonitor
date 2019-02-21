@@ -1,7 +1,7 @@
 <?php
 namespace Evie\Monitor\System\Service\Monitor\Command;
 
-use Evie\Monitor\System\Monitor\Background\BackgroundProcess;
+use Evie\Monitor\System\Service\Monitor\Background\BackgroundProcess;
 use Evie\Monitor\System\Request\Request;
 
 /**
