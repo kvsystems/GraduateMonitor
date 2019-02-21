@@ -81,7 +81,7 @@ class ShellRouter implements IRouter  {
      * @param Request $request
      * @return IResponse
      */
-    public function route(Request $request)    {
+    public function route(Request $request)  : IResponse  {
         return count($this->_middleware) > 0
             ? $this->_middleware[0]->handle($request)
             : $this->handle($request);
