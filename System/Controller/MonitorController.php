@@ -2,9 +2,10 @@
 namespace Evie\Monitor\System\Controller;
 
 use Evie\Monitor\System\Monitor\MonitorService;
+use Evie\Monitor\System\Response\DefaultResponse;
 use Evie\Monitor\System\Response\IResponse;
 
-class MonitorController {
+class MonitorController extends GenericController {
 
     /**
      * Monitor service.
@@ -56,4 +57,11 @@ class MonitorController {
          while(true) $this->_service->pollTarget();
     }
 
+    /**
+     * Default controller action.
+     * @return IResponse
+     */
+    public function default(): IResponse    {
+        return new DefaultResponse();
+    }
 }
