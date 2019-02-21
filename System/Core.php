@@ -9,8 +9,7 @@ use Evie\Monitor\System\Request\Request;
 use Evie\Monitor\System\Request\RequestFactory;
 use Evie\Monitor\System\Response\IResponse;
 use Evie\Monitor\System\Controller\Responder;
-use Evie\Monitor\System\Service\GenericService;
-use Grpc\Server;
+use Evie\Monitor\System\Service\GenericService;;
 
 /**
  * Class Core.
