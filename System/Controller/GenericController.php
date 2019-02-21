@@ -2,6 +2,7 @@
 namespace Evie\Monitor\System\Controller;
 
 use Evie\Monitor\System\Response\IResponse;
+use Evie\Monitor\System\Service\GenericService;
 
 /**
  * Class GenericController
@@ -12,11 +13,12 @@ abstract class GenericController {
     /**
      * Creates controller.
      * @param string $name
+     * @param GenericService $service
      * @return GenericController
      */
-    public static function controller(string $name) : GenericController {
+    public static function controller(string $name, GenericService $service) : GenericController {
         $class = __NAMESPACE__ . ucfirst($name . 'Controller');
-        return new $class;
+        return new $class($service);
     }
 
     /**
