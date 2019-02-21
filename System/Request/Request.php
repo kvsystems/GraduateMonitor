@@ -53,6 +53,16 @@ abstract class Request {
     }
 
     /**
+     * Gets route path.
+     * @return GenericKey
+     */
+    public function path() : GenericKey {
+        return isset($this->params['route'])
+            ? $this->params['route']
+            : KeysFactory::parameter('default', 'default');
+    }
+
+    /**
      * Handle request parameters.
      */
     public abstract function handle();
