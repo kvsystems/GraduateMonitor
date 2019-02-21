@@ -74,6 +74,10 @@ class Core  {
             Middleware::create($middleware, $this->_router);
         }
 
+        $controller = $this->_router->controller($this->_request);
+        $service    = $this->_router->service($this->_request);
+        new $service($controller, $this->_request);
+
         return $this;
     }
 
