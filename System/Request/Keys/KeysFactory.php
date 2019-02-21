@@ -9,6 +9,7 @@ class KeysFactory {
 
     const MODE    = 'm';
     const ROUTE   = 'r';
+    const SERVER  = 's';
 
     /**
      * Gets a new parameter with value.
@@ -23,6 +24,9 @@ class KeysFactory {
                 break;
             case self::ROUTE:
                 $param = new RouteKey($value);
+                break;
+            case self::SERVER:
+                $param = new ServerKey($value);
                 break;
             default:
                 $param = new DefaultKey($value);
