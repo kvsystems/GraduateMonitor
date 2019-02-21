@@ -45,9 +45,23 @@ class MonitorController extends GenericController {
         return $this->responder->success();
     }
 
+    /**
+     * Runs processes observer.
+     * @return IResponse
+     */
     public function observer() : IResponse {
         while(true) $this->service->observe();
         return $this->responder->success();
+    }
+
+    /**
+     * Stops processes and observer.
+     * @return IResponse
+     */
+    public function off() : IResponse  {
+        return $this->service->disable()
+            ? $this->responder->error()
+            : $this->responder->success();
     }
 
     /**

@@ -69,7 +69,9 @@ class BackgroundProcess {
 
     public function off()   {
         try {
-            shell_exec('killall php 2>&1');
+            shell_exec(
+                sprintf('%s %s %s 2>&1 & echo $!', 'killall php 2>/dev/null &', (false) ? '>>' : '>', '/dev/null')
+            );
             return true;
         } catch(\Exception $e){}
         return false;

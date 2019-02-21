@@ -37,7 +37,7 @@ class CommandFactory {
                 $result = new OffCommand();
                 break;
             case self::ON:
-                $result = new OnCommand();
+                $result = new OnCommand($request);
                 break;
             default:
                 $result = new DefaultCommand();
