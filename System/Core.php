@@ -63,24 +63,16 @@ class Core  {
      * @return Core
      */
     public function init()   {
-        $config = new Config();
+        $config           = new Config();
         $this->_request   = RequestFactory::request();
-
-        $caller = $this->_request->parameter('mode');
-        $router = $caller instanceof DefaultKey
-            ? $config->getRouter() : $caller->value();
-        $this->_router    = RouterFactory::router($router, $config->getRoutes());
-
         $this->_responder = new Responder($config->getResponder());
+        $this->_router    = RouterFactory::router(
+            $config->getRouter(), $this->_responder, $config->getRoutes()
+        );
 
         foreach($config->getMiddleware() as $middleware) {
             Middleware::create($middleware, $this->_router);
         }
-
-        # переделать как один управляющий контроллер для сущности, типа сервер ServerController
-        /**foreach($config->getControllers() as $controller) {
-            Middleware::create($controller, $this->_router);
-        }*/
 
         return $this;
     }
@@ -90,8 +82,8 @@ class Core  {
      * @return IResponse
      */
     public function handle() : IResponse {
-        $response = new DefaultResponse();
         $response = $this->_router->route($this->_request);
+        $response = new DefaultResponse();
         return $response;
     }
 
