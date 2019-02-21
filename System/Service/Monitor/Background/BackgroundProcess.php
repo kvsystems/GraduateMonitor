@@ -63,7 +63,15 @@ class BackgroundProcess {
             if (!preg_match('/No such process/', $result)) {
                 return true;
             }
-        } catch (Exception $e) {}
+        } catch (\Exception $e) {}
+        return false;
+    }
+
+    public function off()   {
+        try {
+            shell_exec('killall php 2>&1');
+            return true;
+        } catch(\Exception $e){}
         return false;
     }
 

@@ -45,6 +45,11 @@ class MonitorController extends GenericController {
         return $this->responder->success();
     }
 
+    public function observer() : IResponse {
+        while(true) $this->service->observe();
+        return $this->responder->success();
+    }
+
     /**
      * Default controller action.
      * @return IResponse
