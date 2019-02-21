@@ -16,6 +16,12 @@ class MonitorService extends GenericService {
     protected $hosts = [];
 
     /**
+     * List of pid or ip addresses.
+     * @var $list array
+     */
+    protected $list = [];
+
+    /**
      * Sets request.
      * MonitorService constructor.
      * @param Request $request
@@ -77,9 +83,11 @@ class MonitorService extends GenericService {
      * @return bool
      */
     public function on() : bool {
-        $service = CommandFactory::command('on', $this->request)->execute();
-        return $service
-            ? Transmit::create('post', $this->request, $this->hosts['crud'], [$service])->send()
+        $service = CommandFactory::command('on', $this->request);
+        $service->execute();
+        if($service->pid()) $this->request->set('list',$service->pid());
+        return $service->pid()
+            ? Transmit::create('post', $this->request, $this->hosts['crud'], [$this->list])->send()
             : false;
     }
 
