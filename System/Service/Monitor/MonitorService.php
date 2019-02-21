@@ -94,8 +94,16 @@ class MonitorService extends GenericService {
             : false;
     }
 
+    /**
+     * Watches processes.
+     * @return bool
+     */
     public function observe() : bool {
-
+        for($i = 0; $i < 100; $i++)   {
+            echo 'Run: ' . $i . PHP_EOL;
+            sleep(2);
+        }
+        return false;
     }
 
 }
