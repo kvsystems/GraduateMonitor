@@ -15,13 +15,13 @@ abstract class GenericController {
      * Monitor service.
      * @var $service GenericService
      */
-    private $service;
+    protected $service;
 
     /**
      * Application responder.
      * @var $responder Responder
      */
-    private $responder;
+    protected $responder;
 
     public function __construct(GenericService $service, Responder $responder, IRouter $router)   {
         $this->service   = $service;

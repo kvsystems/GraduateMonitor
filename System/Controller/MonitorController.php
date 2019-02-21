@@ -12,9 +12,9 @@ class MonitorController extends GenericController {
      * @return IResponse
      */
     public function start() : IResponse {
-        return $this->_service->startService()
-            ? $this->_responder->error()
-            : $this->_responder->success();
+        return $this->service->startService()
+            ? $this->responder->error()
+            : $this->responder->success();
     }
 
     /**
@@ -22,16 +22,16 @@ class MonitorController extends GenericController {
      * @return IResponse
      */
     public function stop() : IResponse {
-        return $this->_service->stopService()
-            ? $this->_responder->error()
-            : $this->_responder->success();
+        return $this->service->stopService()
+            ? $this->responder->error()
+            : $this->responder->success();
     }
 
     /**
      * The monitor background cycle.
      */
     public function polling() {
-         while(true) $this->_service->pollTarget();
+         while(true) $this->service->pollTarget();
     }
 
     /**
