@@ -13,6 +13,8 @@ class CommandFactory {
     const START   = 'start';
     const STOP    = 'stop';
     const RESTART = 'restart';
+    const ON      = 'on';
+    const OFF     = 'off';
 
     /**
      * Creates a command.
@@ -30,6 +32,12 @@ class CommandFactory {
                 break;
             case self::RESTART:
                 $result = new RestartCommand($request->parameter('identifier')->value(), $request);
+                break;
+            case self::OFF:
+                $result = new OffCommand();
+                break;
+            case self::ON:
+                $result = new OnCommand();
                 break;
             default:
                 $result = new DefaultCommand();

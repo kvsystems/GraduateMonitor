@@ -72,4 +72,19 @@ class MonitorService extends GenericService {
         return false;
     }
 
+    public function observe() : bool {
+
+    }
+
+    /**
+     * Kills all php processes.
+     * @return bool
+     */
+    public function disable() : bool  {
+        $service = CommandFactory::command('off', $this->request)->execute();
+        return $service
+            ? Transmit::create('post', $this->request, $this->hosts['crud'], [$service])->send()
+            : false;
+    }
+
 }
