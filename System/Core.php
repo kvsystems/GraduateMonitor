@@ -1,15 +1,16 @@
 <?php
 namespace Evie\Monitor\System;
 
+use Evie\Monitor\System\Controller\GenericController;
 use Evie\Monitor\System\Middleware\Base\Middleware;
 use Evie\Monitor\System\Middleware\Router\IRouter;
 use Evie\Monitor\System\Middleware\Router\RouterFactory;
-use Evie\Monitor\System\Request\Keys\DefaultKey;
 use Evie\Monitor\System\Request\Request;
 use Evie\Monitor\System\Request\RequestFactory;
-use Evie\Monitor\System\Response\DefaultResponse;
 use Evie\Monitor\System\Response\IResponse;
 use Evie\Monitor\System\Controller\Responder;
+use Evie\Monitor\System\Service\GenericService;
+use Grpc\Server;
 
 /**
  * Class Core.
@@ -76,7 +77,10 @@ class Core  {
 
         $controller = $this->_router->controller($this->_request);
         $service    = $this->_router->service($this->_request);
-        new $service($controller, $this->_request);
+
+        GenericController::controller(
+            $controller, GenericService::service($service, $this->_request), $this->_responder
+        );
 
         return $this;
     }
