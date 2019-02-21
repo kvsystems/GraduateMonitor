@@ -26,7 +26,7 @@ class KeysFactory {
                 $param = new RouteKey($value);
                 break;
             case self::SERVER:
-                $param = new ServerKey($value);
+                $param = new IdentifierKey($value);
                 break;
             default:
                 $param = new DefaultKey($value);

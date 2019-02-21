@@ -2,10 +2,10 @@
 namespace Evie\Monitor\System\Request\Keys;
 
 /**
- * Class ServerKey
+ * Class IdentifierKey
  * @package Evie\MonitorController\System\Request\Keys
  */
-class ServerKey extends GenericKey {
+class IdentifierKey extends GenericKey {
 
     /**
      * Handle mode key value
