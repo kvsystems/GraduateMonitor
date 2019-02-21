@@ -11,7 +11,7 @@ use Evie\Monitor\System\Service\Monitor\Background\BackgroundProcess;
 class OffCommand implements ICommand {
 
     /**
-     * Executes default command.
+     * Stops all processes.
      * @return bool
      */
     public function execute(): bool {
