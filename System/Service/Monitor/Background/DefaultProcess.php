@@ -23,4 +23,12 @@ class DefaultProcess implements IProcess {
     public function ipa(): string   {
         return '';
     }
+
+    /**
+     * Gets processes identifiers.
+     * @return string
+     */
+    public function processes() : string {
+        return '';
+    }
 }

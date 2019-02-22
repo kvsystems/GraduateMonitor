@@ -32,7 +32,7 @@ class BackgroundProcess {
     }
 
     /**
-     * Runs IP address command.
+     * Gets IP addresses.
      */
     public function ipa()   {
         $out = preg_split('/\s+/', trim($this->_process->ipa()));
@@ -40,6 +40,20 @@ class BackgroundProcess {
         return array_values(array_unique($out));
     }
 
+    /**
+     * Gets processes.
+     * @return array
+     */
+    public function processes()   {
+        $out = preg_split('/\s+/', trim($this->_process->processes()));
+        array_pop($out);
+        return array_values(array_unique($out));
+    }
+
+    /**
+     * Gets watcher processes.
+     * @return array
+     */
     public function watch() : array {
         $out = preg_split('/\s+/', trim($this->_process->watch()));
         $result[] = $out[0];

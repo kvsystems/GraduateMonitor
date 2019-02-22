@@ -29,6 +29,16 @@ class UnixProcess implements IProcess {
     }
 
     /**
+     * Gets processes identifiers.
+     * @return string
+     */
+    public function processes() : string   {
+        return shell_exec(
+            'ps -aux | grep index.php | grep monitor/poll | awk \'{print $2}\''
+        );
+    }
+
+    /**
      * Gets watcher processes.
      * @return string
      */

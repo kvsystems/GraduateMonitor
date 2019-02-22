@@ -21,4 +21,10 @@ interface IProcess {
      */
     public function ipa() : string;
 
+    /**
+     * Gets processes identifiers.
+     * @return string
+     */
+    public function processes() : string;
+
 }

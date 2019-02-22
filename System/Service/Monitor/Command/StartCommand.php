@@ -41,6 +41,7 @@ class StartCommand implements ICommand {
 
         $ipa = $this->_request->parameter('ipa')->value();
         $current = $process->ipa();
+        $processes = $process->processes();
         $watcher = $process->watch();
 
         if($ipa && !in_array($ipa, $current)) {
@@ -48,14 +49,14 @@ class StartCommand implements ICommand {
         }
 
         if(!empty($watcher)) {
-            $process = new BackgroundProcess($watcher[0]);
-            $process->stop();
+            $watchProcess = new BackgroundProcess($watcher[0]);
+            $watchProcess->stop();
         }
 
-        $current[] = $ipa;
+        $processes[] = $process->getPid();
         $subProcess = new BackgroundProcess();
         $subProcess->run(
-            'php ' . ROOT_DIR . 'index.php -m monitor -r monitor/watch -l ' . implode(',', $current)
+            'php ' . ROOT_DIR . 'index.php -m monitor -r monitor/watch -l ' . implode(',', $processes)
         );
 
         $this->_pid = $process->getPid();
