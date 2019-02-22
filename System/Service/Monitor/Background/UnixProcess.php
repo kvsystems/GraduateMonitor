@@ -23,9 +23,10 @@ class UnixProcess implements IProcess {
      * @return string
      */
     public function ipa(): string   {
-        return shell_exec(
-            'ps -aux | grep index.php | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b"'
+        $out = shell_exec(
+            'ps -aux | grep index.php | grep monitor/poll | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b"'
         );
+        return !is_null($out) ? $out : '';
     }
 
     /**

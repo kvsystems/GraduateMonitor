@@ -42,9 +42,10 @@ class OnCommand implements ICommand {
         $servers = explode(',', $servers);
         if(is_array($servers) && !empty($servers)) {
             foreach($servers as $ipa) {
-                $this->request->set('ipa', KeysFactory::parameter('a', $ipa));
-                if($pid = CommandFactory::command('start',$this->_request))
-                    $this->_list[] = $pid;
+                $this->_request->set('ipa', KeysFactory::parameter('a', $ipa));
+                $process = CommandFactory::command('start', $this->_request);
+                $process->execute();
+                if($process->pid()) $this->_list[] = $process->pid();
             }
         }
         return count($this->_list) == count($servers) ? true : false;

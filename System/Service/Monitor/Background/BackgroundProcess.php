@@ -81,7 +81,6 @@ class BackgroundProcess {
      */
     public function ips()   {
         $out = explode(',', trim($this->_process->ips()));
-        array_pop($out);
         return array_values(array_filter(array_unique($out)));
     }
 

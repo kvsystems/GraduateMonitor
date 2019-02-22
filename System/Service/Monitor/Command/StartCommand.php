@@ -54,13 +54,15 @@ class StartCommand implements ICommand {
         }
 
         if($process->getPid() > 0) $processes[] = $process->getPid();
-        $current[] = $process->getPid();
+
+        $real = $process->ipa();
+        $real[] = $ipa;
 
         $subProcess = new BackgroundProcess();
 
         $command = 'php ' . ROOT_DIR . 'index.php -m monitor -r monitor/watch -l ';
         $command .= implode(',', $processes);
-        $command .= ' -h ' . implode(',', $current);
+        $command .= ' -h ' . implode(',', $real);
 
         $subProcess->run($command);
 
