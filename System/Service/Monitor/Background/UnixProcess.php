@@ -47,4 +47,14 @@ class UnixProcess implements IProcess {
             "ps -aux | grep index.php | grep monitor/watch | awk '{print $2}\" \"{print $18}'"
         );
     }
+
+    /**
+     * Gets watcher IP addresses list.
+     * @return string
+     */
+    public function ips() : string {
+        return shell_exec(
+            "ps -aux | grep index.php | grep monitor/watch | awk '{print $20}'"
+        );
+    }
 }

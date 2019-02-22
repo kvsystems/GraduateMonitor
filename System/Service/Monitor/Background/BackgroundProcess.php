@@ -76,6 +76,16 @@ class BackgroundProcess {
     }
 
     /**
+     * Gets IP addresses list.
+     * @return array
+     */
+    public function ips()   {
+        $out = preg_split('/\s+/', trim($this->_process->ips()));
+        array_pop($out);
+        return array_values(array_filter(array_unique($out)));
+    }
+
+    /**
      * Checks if a process is running.
      * @return bool
      */

@@ -31,4 +31,12 @@ class DefaultProcess implements IProcess {
     public function processes() : string {
         return '';
     }
+
+    /**
+     * Gets IP addresses list.
+     * @return string
+     */
+    public function ips() : string {
+        return '';
+    }
 }

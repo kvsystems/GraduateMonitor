@@ -27,4 +27,10 @@ interface IProcess {
      */
     public function processes() : string;
 
+    /**
+     * Gets watcher IP addresses list.
+     * @return string
+     */
+    public function ips() : string;
+
 }
