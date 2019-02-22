@@ -11,25 +11,6 @@ use Evie\Monitor\System\Service\GenericService;
 class MonitorController extends GenericController {
 
     /**
-     * Polling frequency.
-     * @var $_frequency int
-     */
-    private $_frequency;
-
-    /**
-     * Sets pooling frequency.
-     * MonitorController constructor.
-     * @param GenericService $service
-     * @param Responder $responder
-     * @param IRouter $router
-     */
-    public function __construct(GenericService $service, Responder $responder, IRouter $router) {
-        parent::__construct($service, $responder, $router);
-        $config = new Config();
-        $this->_frequency = $config->getFrequency();
-    }
-
-    /**
      * Starts the monitor background application.
      * @return IResponse
      */

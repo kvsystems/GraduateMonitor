@@ -17,14 +17,21 @@ class MonitorService extends GenericService {
     protected $hosts = [];
 
     /**
+     * Polling frequency.
+     * @var $_frequency int
+     */
+    protected $frequency;
+
+    /**
      * Sets request.
      * MonitorService constructor.
      * @param Request $request
      */
     public function __construct(Request $request)   {
         parent::__construct($request);
-        $config         = new Config();
-        $this->hosts    = $config->getHosts();
+        $config          = new Config();
+        $this->hosts     = $config->getHosts();
+        $this->frequency = $config->getFrequency();
     }
 
     /**
