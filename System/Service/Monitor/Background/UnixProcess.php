@@ -18,4 +18,13 @@ class UnixProcess implements IProcess {
         );
     }
 
+    /**
+     * Gets process IP address.
+     * @return string
+     */
+    public function ipa(int $pid): string   {
+        return shell_exec(
+            'ps -aux | grep index.php | grep ' . $pid . ' | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b"'
+        );
+    }
 }

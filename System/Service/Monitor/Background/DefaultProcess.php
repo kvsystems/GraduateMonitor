@@ -15,4 +15,12 @@ class DefaultProcess implements IProcess {
     public function run(string $command = '') : int {
         return 0;
     }
+
+    /**
+     * Gets process IP address.
+     * @return string
+     */
+    public function ipa(int $pid): string   {
+        return '';
+    }
 }

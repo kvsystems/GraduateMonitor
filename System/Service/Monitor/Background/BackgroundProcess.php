@@ -22,6 +22,12 @@ class BackgroundProcess {
     private $_pid;
 
     /**
+     * Process IP address.
+     * @var $_ipa string
+     */
+    private $_ipa;
+
+    /**
      * Creates a process.
      * BackgroundProcess constructor.
      * @param int $pid
@@ -29,6 +35,13 @@ class BackgroundProcess {
     public function __construct(int $pid = 0)   {
         $this->_process = ProcessFactory::create();
         $this->_pid = $pid;
+    }
+
+    /**
+     * Runs IP address command.
+     */
+    public function ipa()   {
+        $this->_ipa = $this->_process->ipa($this->_pid);
     }
 
     /**

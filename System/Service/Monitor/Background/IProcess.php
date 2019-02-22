@@ -15,4 +15,10 @@ interface IProcess {
      */
     public function run(string $command = '') : int;
 
+    /**
+     * Gets process IP address.
+     * @return string
+     */
+    public function ipa(int $pid) : string;
+
 }
