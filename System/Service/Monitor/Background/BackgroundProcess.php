@@ -36,7 +36,7 @@ class BackgroundProcess {
      */
     public function ipa()   {
         $out = preg_split('/\s+/', trim($this->_process->ipa()));
-        array_shift($out);
+        array_pop($out);
         return $out;
     }
 
