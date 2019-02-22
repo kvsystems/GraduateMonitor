@@ -3,7 +3,6 @@ namespace Evie\Monitor\System\Middleware;
 
 use Evie\Monitor\System\Middleware\Base\Middleware;
 use Evie\Monitor\System\Request\Request;
-use Evie\Monitor\System\Response\DefaultResponse;
 use Evie\Monitor\System\Response\IResponse;
 
 class FirewallMiddleware extends Middleware {
