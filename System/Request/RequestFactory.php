@@ -21,7 +21,7 @@ class RequestFactory {
                 $request = new HttpRequest();
                 break;
             case self::CLI:
-                $request = new ShellRequest(["m:r:i:a:l:"]);
+                $request = new ShellRequest(["m:r:i:a:l:h:"]);
                 break;
             default:
                 $request = new DefaultRequest();

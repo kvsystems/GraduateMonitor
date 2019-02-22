@@ -12,6 +12,7 @@ class KeysFactory {
     const SERVER  = 'i';
     const IP      = 'a';
     const LIST    = 'l';
+    const HOSTS   = 'h';
 
     /**
      * Gets a new parameter with value.
@@ -35,6 +36,9 @@ class KeysFactory {
                 break;
             case self::LIST:
                 $param = new ListKey($value);
+                break;
+            case self::HOSTS:
+                $param = new HostsKey($value);
                 break;
             default:
                 $param = new DefaultKey($value);
