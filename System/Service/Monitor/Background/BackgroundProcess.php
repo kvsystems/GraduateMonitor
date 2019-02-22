@@ -41,7 +41,7 @@ class BackgroundProcess {
      * Runs IP address command.
      */
     public function ipa()   {
-        $this->_ipa = $this->_process->ipa($this->_pid);
+        $this->_ipa = $this->_process->ipa();
     }
 
     /**

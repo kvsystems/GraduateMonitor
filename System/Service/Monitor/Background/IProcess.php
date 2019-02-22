@@ -19,6 +19,6 @@ interface IProcess {
      * Gets process IP address.
      * @return string
      */
-    public function ipa(int $pid) : string;
+    public function ipa() : string;
 
 }
