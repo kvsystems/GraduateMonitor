@@ -35,7 +35,7 @@ class StopCommand implements ICommand   {
         $stop      = $process->stop();
         $processes = $process->processes();
         $watcher   = $process->watch();
-        $current   = $process->watch();
+        $current   = $process->ipa();
 
         if(!empty($watcher)) {
             $process = new BackgroundProcess($watcher[0]);

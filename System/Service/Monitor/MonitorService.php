@@ -125,7 +125,7 @@ class MonitorService extends GenericService {
     public function watch() : bool {
         while(true)   {
 
-            /**$process = new BackgroundProcess();
+            $process = new BackgroundProcess();
             $processes = $process->processes();
             $ipAddresses = $process->ips();
 
@@ -135,7 +135,7 @@ class MonitorService extends GenericService {
                     $this->request->set('ipa', $ipAddresses[$i]);
                     CommandFactory::command('start', $this->request)->execute();
                 }
-            }*/
+            }
 
             sleep($this->frequency);
         }
