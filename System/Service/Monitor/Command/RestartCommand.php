@@ -2,6 +2,7 @@
 namespace Evie\Monitor\System\Service\Monitor\Command;
 
 use Evie\Monitor\System\Request\Request;
+use Evie\Monitor\System\Service\Monitor\Background\BackgroundProcess;
 
 /**
  * Class RestartCommand.
@@ -37,9 +38,17 @@ class RestartCommand implements ICommand {
      * @return bool
      */
     public function execute(): bool {
-        if($this->_request->parameter('ipa')->value()
-            && CommandFactory::command('stop', $this->_request)->execute()) {
-            $this->_pid = CommandFactory::command('start', $this->_request)->execute();
+        $ipa = $this->_request->parameter('ipa')->value();
+
+        if($ipa && CommandFactory::command('stop', $this->_request)->execute()) {
+
+            $process = new BackgroundProcess();
+            $current = $process->ipa();
+
+            if($ipa && !in_array($ipa, $current)) {
+                $this->_pid = CommandFactory::command('start', $this->_request)->execute();
+            }
+
         }
         return $this->_pid ? true : false;
 

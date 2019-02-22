@@ -53,7 +53,8 @@ class StartCommand implements ICommand {
             $watchProcess->stop();
         }
 
-        $processes[] = $process->getPid();
+        if($process->getPid() > 0) $processes[] = $process->getPid();
+
         $subProcess = new BackgroundProcess();
         $subProcess->run(
             'php ' . ROOT_DIR . 'index.php -m monitor -r monitor/watch -l ' . implode(',', $processes)

@@ -47,7 +47,7 @@ class BackgroundProcess {
     public function processes()   {
         $out = preg_split('/\s+/', trim($this->_process->processes()));
         array_pop($out);
-        return array_values(array_unique($out));
+        return array_values(array_filter(array_unique($out)));
     }
 
     /**
@@ -64,7 +64,7 @@ class BackgroundProcess {
             }
         }
         if($result[1] == '|') $result = [];
-        return array_values(array_unique($result));
+        return array_values(array_filter(array_unique($result)));
     }
 
     /**
