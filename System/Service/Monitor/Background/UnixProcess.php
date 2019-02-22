@@ -27,4 +27,14 @@ class UnixProcess implements IProcess {
             'ps -aux | grep index.php | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b"'
         );
     }
+
+    /**
+     * Gets watcher processes.
+     * @return string
+     */
+    public function watch() : string {
+        return shell_exec(
+            "ps -aux | grep index.php | grep monitor/watch | awk '{print $2}\" \"{print $18}'"
+        );
+    }
 }

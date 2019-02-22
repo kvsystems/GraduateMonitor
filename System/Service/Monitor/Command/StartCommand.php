@@ -38,9 +38,26 @@ class StartCommand implements ICommand {
      */
     public function execute(): bool {
         $process = new BackgroundProcess();
+
         $ipa = $this->_request->parameter('ipa')->value();
-        if($ipa && !in_array($ipa, $process->ipa()))
-            $process->run('php ' . ROOT_DIR . 'index.php -m monitor -r monitor/poll -a ' . $ipa );
+        $current = $process->ipa();
+        $watcher = $process->watch();
+
+        if($ipa && !in_array($ipa, $current)) {
+            $process->run('php ' . ROOT_DIR . 'index.php -m monitor -r monitor/poll -a ' . $ipa);
+        }
+
+        if(!empty($watcher)) {
+            $process = new BackgroundProcess($watcher[0]);
+            $process->stop();
+        }
+
+        $current[] = $ipa;
+        $subProcess = new BackgroundProcess();
+        $subProcess->run(
+            'php ' . ROOT_DIR . 'index.php -m monitor -r monitor/watch -l ' . implode(',', $current)
+        );
+
         $this->_pid = $process->getPid();
         return $this->_pid ? true : false;
     }

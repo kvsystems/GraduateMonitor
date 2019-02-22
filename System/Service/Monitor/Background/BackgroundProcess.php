@@ -37,7 +37,20 @@ class BackgroundProcess {
     public function ipa()   {
         $out = preg_split('/\s+/', trim($this->_process->ipa()));
         array_pop($out);
-        return $out;
+        return array_values(array_unique($out));
+    }
+
+    public function watch() : array {
+        $out = preg_split('/\s+/', trim($this->_process->watch()));
+        $result[] = $out[0];
+        $processes = explode(',',$out[1]);
+        if(!empty($processes)) {
+            foreach ($processes as $process) {
+                $result[] = $process;
+            }
+        }
+        if($result[1] == '|') $result = [];
+        return array_values(array_unique($result));
     }
 
     /**
