@@ -62,18 +62,6 @@ class MonitorService extends GenericService {
     }
 
     /**
-     * Polls current request target.
-     * @return bool
-     */
-    public function pollTarget() : bool  {
-        for($i = 0; $i < 100; $i++)   {
-            echo 'Run: ' . $i . PHP_EOL;
-            sleep(2);
-        }
-        return false;
-    }
-
-    /**
      * Runs list of hosts,
      * @return bool
      */
@@ -109,13 +97,29 @@ class MonitorService extends GenericService {
     }
 
     /**
+     * Polls current request target.
+     * @return bool
+     */
+    public function pollTarget() : bool  {
+        $i = 0;
+        while(true)   {
+            echo 'Run: ' . $i . PHP_EOL;
+            sleep(2);
+            $i++;
+        }
+        return false;
+    }
+
+    /**
      * Watches processes.
      * @return bool
      */
     public function watch() : bool {
-        for($i = 0; $i < 100; $i++)   {
+        $i = 0;
+        while(true)   {
             echo 'Run: ' . $i . PHP_EOL;
             sleep(2);
+            $i++;
         }
         return false;
     }
