@@ -23,9 +23,9 @@ class BackgroundProcess {
 
     /**
      * Process IP address.
-     * @var $_ipa string
+     * @var $_ipa array
      */
-    private $_ipa;
+    private $_ipa = [];
 
     /**
      * Creates a process.
@@ -41,7 +41,7 @@ class BackgroundProcess {
      * Runs IP address command.
      */
     public function ipa()   {
-        $this->_ipa = $this->_process->ipa();
+        $this->_ipa = preg_split('/\s+/', trim($this->_process->ipa()));
     }
 
     /**
@@ -96,5 +96,13 @@ class BackgroundProcess {
      */
     public function getPid() : int  {
         return (int) $this->_pid;
+    }
+
+    /**
+     * Gets IP running addresses list.
+     * @return array
+     */
+    public function getIpa()    {
+        return $this->_ipa;
     }
 }
