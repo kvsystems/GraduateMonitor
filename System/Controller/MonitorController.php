@@ -1,11 +1,33 @@
 <?php
 namespace Evie\Monitor\System\Controller;
 
+use Evie\Monitor\System\Config;
+use Evie\Monitor\System\Middleware\Router\IRouter;
 use Evie\Monitor\System\Monitor\MonitorService;
 use Evie\Monitor\System\Response\DefaultResponse;
 use Evie\Monitor\System\Response\IResponse;
+use Evie\Monitor\System\Service\GenericService;
 
 class MonitorController extends GenericController {
+
+    /**
+     * Polling frequency.
+     * @var $_frequency int
+     */
+    private $_frequency;
+
+    /**
+     * Sets pooling frequency.
+     * MonitorController constructor.
+     * @param GenericService $service
+     * @param Responder $responder
+     * @param IRouter $router
+     */
+    public function __construct(GenericService $service, Responder $responder, IRouter $router) {
+        parent::__construct($service, $responder, $router);
+        $config = new Config();
+        $this->_frequency = $config->getFrequency();
+    }
 
     /**
      * Starts the monitor background application.
@@ -84,5 +106,13 @@ class MonitorController extends GenericController {
      */
     public function default(): IResponse    {
         return new DefaultResponse();
+    }
+
+    /**
+     * Gets polling frequency.
+     * @return int
+     */
+    public function frequency() {
+        return $this->_frequency;
     }
 }
