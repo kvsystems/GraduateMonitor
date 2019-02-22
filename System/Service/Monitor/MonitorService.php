@@ -76,7 +76,7 @@ class MonitorService extends GenericService {
     public function on() : bool {
         $service = CommandFactory::command('on', $this->request);
         $service->execute();
-        if($service->list()) $this->request->set('list', KeysFactory::parameter('l', $service->list()));
+        if($service->list()) $this->request->set('hosts', KeysFactory::parameter('h', $service->list()));
         return $service->list()
             ? Transmit::create('post', $this->request, $this->hosts['crud'], [$service->list()])->send()
             : false;
@@ -133,7 +133,7 @@ class MonitorService extends GenericService {
 
             for($i = 0; $i < count($ipAddresses); $i++) {
                 if(!isset($processes[$i]) || @!posix_kill($processes[$i],0)) {
-                    $this->request->set('ipa', $ipAddresses[$i]);
+                    $this->request->set('ipa', KeysFactory::parameter('a', $ipAddresses[$i]));
                     $pid = CommandFactory::command('start', $this->request)->execute();
                     echo 'Started: ' . $pid . PHP_EOL;
                 }
