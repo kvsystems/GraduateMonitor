@@ -1,6 +1,7 @@
 <?php
 namespace Evie\Monitor\System\Service\Monitor\Command;
 
+use Evie\Monitor\System\Request\Keys\KeysFactory;
 use Evie\Monitor\System\Request\Request;
 use Evie\Monitor\System\Service\Monitor\Background\BackgroundProcess;
 
@@ -41,9 +42,8 @@ class OnCommand implements ICommand {
         $servers = explode(',', $servers);
         if(is_array($servers) && !empty($servers)) {
             foreach($servers as $ipa) {
-                $process = new BackgroundProcess();
-                $process->run('php ' . ROOT_DIR . 'index.php -m monitor -r monitor/poll -a ' . $ipa );
-                if($pid = $process->getPid()) $this->_list[] = $pid;
+                if($pid = CommandFactory::command('start', KeysFactory::parameter('ipa', $ipa)))
+                    $this->_list[] = $pid;
             }
         }
         return count($this->_list) == count($servers) ? true : false;
