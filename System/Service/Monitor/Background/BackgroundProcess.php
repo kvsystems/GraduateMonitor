@@ -103,6 +103,10 @@ class BackgroundProcess {
         return false;
     }
 
+    /**
+     * Stop all php processes.
+     * @return bool
+     */
     public function off()   {
         try {
             shell_exec(

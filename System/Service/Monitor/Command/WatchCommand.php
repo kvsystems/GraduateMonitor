@@ -37,10 +37,14 @@ class WatchCommand implements ICommand {
      */
     public function execute(): bool {
         $process = new BackgroundProcess();
-        $process->run(
-            'php ' . ROOT_DIR . 'index.php -m monitor -r monitor/watch -l ' . $this->_request->parameter('list')->value()
-        );
+
+        $command = 'php ' . ROOT_DIR . 'index.php -m monitor -r monitor/watch -l ';
+        $command .= $this->_request->parameter('list')->value();
+        $command .= ' -h ' . $this->_request->parameter('hosts')->value();
+
+        $process->run($command);
         $this->_pid = $process->getPid();
+
         return $this->_pid ? true : false;
     }
 

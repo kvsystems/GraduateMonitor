@@ -2,6 +2,7 @@
 namespace Evie\Monitor\System\Service\Monitor;
 
 use Evie\Monitor\System\Request\Keys\KeysFactory;
+use Evie\Monitor\System\Service\Monitor\Background\BackgroundProcess;
 use Evie\Monitor\System\Service\Monitor\Command\CommandFactory;
 use Evie\Monitor\System\Request\Request;
 use Evie\Monitor\System\Service\GenericService;
@@ -122,11 +123,21 @@ class MonitorService extends GenericService {
      * @return bool
      */
     public function watch() : bool {
-        $i = 0;
         while(true)   {
-            echo 'Run: ' . $i . PHP_EOL;
-            sleep(2);
-            $i++;
+
+            /**$process = new BackgroundProcess();
+            $processes = $process->processes();
+            $ipAddresses = $process->ips();
+
+            if(empty($processes)) break;
+            for($i = 0; $i < count($processes); $i++) {
+                if(!posix_kill($processes[$i],0)) {
+                    $this->request->set('ipa', $ipAddresses[$i]);
+                    CommandFactory::command('start', $this->request)->execute();
+                }
+            }*/
+
+            sleep($this->frequency);
         }
         return false;
     }
