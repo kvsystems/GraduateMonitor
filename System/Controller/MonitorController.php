@@ -38,14 +38,6 @@ class MonitorController extends GenericController {
     }
 
     /**
-     * The monitor background cycle.
-     */
-    public function polling() : IResponse {
-        while(true) $this->service->pollTarget();
-        return $this->responder->success();
-    }
-
-    /**
      * Runs processes observer.
      * @return IResponse
      */
@@ -68,12 +60,22 @@ class MonitorController extends GenericController {
     }
 
     /**
+     * The monitor background cycle.
+     */
+    public function polling() : IResponse {
+        return $this->service->pollTarget()
+            ? $this->responder->error()
+            : $this->responder->success();
+    }
+
+    /**
      * Stops processes and observer.
      * @return IResponse
      */
     public function watcher() : IResponse  {
-        while(true) $this->service->watch();
-        return $this->responder->success();
+        return $this->service->watch()
+            ? $this->responder->error()
+            : $this->responder->success();
     }
 
     /**
