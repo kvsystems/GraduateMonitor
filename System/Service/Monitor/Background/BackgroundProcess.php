@@ -80,7 +80,7 @@ class BackgroundProcess {
      * @return array
      */
     public function ips()   {
-        $out = preg_split('/\s+/', trim($this->_process->ips()));
+        $out = explode(',', trim($this->_process->ips()));
         array_pop($out);
         return array_values(array_filter(array_unique($out)));
     }

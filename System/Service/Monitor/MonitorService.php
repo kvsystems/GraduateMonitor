@@ -130,11 +130,14 @@ class MonitorService extends GenericService {
             $ipAddresses = $process->ips();
 
             if(empty($processes)) break;
+
             for($i = 0; $i < count($ipAddresses); $i++) {
                 if(!isset($processes[$i]) || @!posix_kill($processes[$i],0)) {
                     $this->request->set('ipa', $ipAddresses[$i]);
-                    CommandFactory::command('start', $this->request)->execute();
+                    $pid = CommandFactory::command('start', $this->request)->execute();
+                    echo 'Started: ' . $pid . PHP_EOL;
                 }
+                echo $i . PHP_EOL;
             }
 
             sleep($this->frequency);
