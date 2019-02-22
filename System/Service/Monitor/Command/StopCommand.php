@@ -31,7 +31,22 @@ class StopCommand implements ICommand   {
      */
     public function execute(): bool {
         $process = new BackgroundProcess($this->_pid);
-        return $process->stop();
+
+        $stop    = $process->stop();
+        $current = $process->processes();
+        $watcher = $process->watch();
+
+        if(!empty($watcher)) {
+            $process = new BackgroundProcess($watcher[0]);
+            $process->stop();
+        }
+
+        $subProcess = new BackgroundProcess();
+        $subProcess->run(
+            'php ' . ROOT_DIR . 'index.php -m monitor -r monitor/watch -l ' . implode(',', $current)
+        );
+
+        return $stop;
     }
 
     /**
