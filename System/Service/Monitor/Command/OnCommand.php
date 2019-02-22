@@ -42,7 +42,8 @@ class OnCommand implements ICommand {
         $servers = explode(',', $servers);
         if(is_array($servers) && !empty($servers)) {
             foreach($servers as $ipa) {
-                if($pid = CommandFactory::command('start', KeysFactory::parameter('ipa', $ipa)))
+                $this->request->set('ipa', KeysFactory::parameter('a', $ipa));
+                if($pid = CommandFactory::command('start',$this->_request))
                     $this->_list[] = $pid;
             }
         }
