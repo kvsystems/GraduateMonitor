@@ -37,7 +37,7 @@ class OnCommand implements ICommand {
      * @return bool
      */
     public function execute(): bool {
-        $servers = $this->_request->parameter('list')->value();
+        $servers = $this->_request->parameter('hosts')->value();
         $servers = explode(',', $servers);
         if(is_array($servers) && !empty($servers)) {
             foreach($servers as $ipa) {
