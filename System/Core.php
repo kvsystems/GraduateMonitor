@@ -74,8 +74,8 @@ class Core  {
             Middleware::create($middleware, $this->_router);
         }
 
-        $controller = $this->_router->controller($this->_request);
-        $service    = $this->_router->service($this->_request);
+        $controller = $this->_router->controller();
+        $service    = $this->_router->service();
 
         GenericController::controller(
             $controller, GenericService::service($service, $this->_request), $this->_responder, $this->_router
@@ -89,7 +89,7 @@ class Core  {
      * @return IResponse
      */
     public function handle() : IResponse {
-        $response = $this->_router->route($this->_request);
+        $response = $this->_router->route();
         return $response;
     }
 

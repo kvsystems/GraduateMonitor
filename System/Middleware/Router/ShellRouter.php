@@ -60,7 +60,6 @@ class ShellRouter implements IRouter  {
 
     /**
      * Gets request route.
-     * @param Request $request
      * @return array
      */
     private function _match() : array {
@@ -74,7 +73,6 @@ class ShellRouter implements IRouter  {
 
     /**
      * Handles request.
-     * @param Request $request
      * @return IResponse
      */
     public function handle() : IResponse {
@@ -95,7 +93,6 @@ class ShellRouter implements IRouter  {
 
     /**
      * Handles route.
-     * @param Request $request
      * @return IResponse
      */
     public function route()  : IResponse  {
@@ -115,7 +112,6 @@ class ShellRouter implements IRouter  {
 
     /**
      * Gets controller.
-     * @param Request $request
      * @return string
      */
     public function controller() : string  {
@@ -124,7 +120,6 @@ class ShellRouter implements IRouter  {
 
     /**
      * Gets action.
-     * @param Request $request
      * @return string
      */
     public function action() : string {
@@ -133,7 +128,6 @@ class ShellRouter implements IRouter  {
 
     /**
      * Gets action.
-     * @param Request $request
      * @return string
      */
     public function service() : string {

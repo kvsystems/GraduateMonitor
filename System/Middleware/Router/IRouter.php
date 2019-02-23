@@ -4,7 +4,6 @@ namespace Evie\Monitor\System\Middleware\Router;
 use Evie\Monitor\System\Controller\GenericController;
 use Evie\Monitor\System\Middleware\Base\IHandler;
 use Evie\Monitor\System\Middleware\Base\Middleware;
-use Evie\Monitor\System\Request\Request;
 use Evie\Monitor\System\Response\IResponse;
 
 /**
@@ -22,7 +21,6 @@ interface IRouter extends IHandler {
 
     /**
      * Handles route.
-     * @param Request $request
      * @return IResponse
      */
     public function route();
@@ -36,9 +34,25 @@ interface IRouter extends IHandler {
 
     /**
      * Handles request.
-     * @param Request $request
      * @return IResponse
      */
     public function handle(): IResponse;
+
+    /**
+     * Gets controller.
+     * @return string
+     */
+    public function controller() : string;
+    /**
+     * Gets action.
+     * @return string
+     */
+    public function action() : string;
+
+    /**
+     * Gets action.
+     * @return string
+     */
+    public function service() : string;
 
 }

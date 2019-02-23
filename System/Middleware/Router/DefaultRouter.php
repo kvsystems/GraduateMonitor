@@ -2,9 +2,9 @@
 namespace Evie\Monitor\System\Middleware\Router;
 
 use Evie\Monitor\System\Middleware\Base\Middleware;
-use Evie\Monitor\System\Request\Request;
 use Evie\Monitor\System\Response\IResponse;
 use Evie\Monitor\System\Controller\GenericController;
+use Evie\Monitor\System\Response\ResponseFactory;
 
 /**
  * Class DefaultRouter.
@@ -14,7 +14,7 @@ use Evie\Monitor\System\Controller\GenericController;
 class DefaultRouter implements IRouter  {
 
     public function handle() : IResponse  {
-        // TODO: Implement handle() method.
+        return ResponseFactory::response('default');
     }
 
     public function load(Middleware $middleware)    {
@@ -34,4 +34,27 @@ class DefaultRouter implements IRouter  {
 
     }
 
+    /**
+     * Gets controller.
+     * @return string
+     */
+    public function controller(): string    {
+        return '';
+    }
+
+    /**
+     * Gets action.
+     * @return string
+     */
+    public function action(): string    {
+        return '';
+    }
+
+    /**
+     * Gets action.
+     * @return string
+     */
+    public function service(): string   {
+        return '';
+    }
 }
