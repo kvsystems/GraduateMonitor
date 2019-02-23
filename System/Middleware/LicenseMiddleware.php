@@ -4,10 +4,14 @@ namespace Evie\Monitor\System\Middleware;
 use Evie\Monitor\System\Middleware\Base\Middleware;
 use Evie\Monitor\System\Response\IResponse;
 
-class FirewallMiddleware extends Middleware {
+/**
+ * Class LicenseMiddleware
+ * @package Evie\Monitor\System\Middleware
+ */
+class LicenseMiddleware extends Middleware {
 
     /**
-     * Handles firewall middleware.
+     * Handles license middleware.
      * @return IResponse
      */
     public function handle() : IResponse  {

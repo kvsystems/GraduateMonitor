@@ -1,7 +1,6 @@
 <?php
 namespace Evie\Monitor\System\Middleware\Base;
 
-use Evie\Monitor\System\Request\Request;
 use Evie\Monitor\System\Response\IResponse;
 
 /**
@@ -13,7 +12,6 @@ interface IHandler {
 
     /**
      * Handles middleware.
-     * @param Request $request
      * @return IResponse
      */
     public function handle() : IResponse;
