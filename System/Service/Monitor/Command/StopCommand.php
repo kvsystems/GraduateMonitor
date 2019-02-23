@@ -37,17 +37,17 @@ class StopCommand implements ICommand   {
         $watcher   = $process->watch();
         $current   = $process->ipa();
 
-        if(!empty($watcher)) {
-            $process = new BackgroundProcess($watcher[0]);
-            $process->stop();
-        }
-
         $subProcess = new BackgroundProcess();
         $command = 'php ' . ROOT_DIR . 'index.php -m monitor -r monitor/watch -l ';
         $command .= implode(',', $processes);
         $command .= ' -h ' . implode(',', $current);
 
         $subProcess->run($command);
+
+        if(!empty($watcher)) {
+            $process = new BackgroundProcess($watcher[0]);
+            $process->stop();
+        }
 
         return $stop;
     }
@@ -58,6 +58,14 @@ class StopCommand implements ICommand   {
      */
     public function pid(): int  {
         return 0;
+    }
+
+    /**
+     * Gets a list of identifiers.
+     * @return string
+     */
+    public function list(): string   {
+        return '';
     }
 
 }

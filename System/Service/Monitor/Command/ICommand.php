@@ -19,4 +19,9 @@ interface ICommand {
      * @return int
      */
     public function pid() : int;
+
+    /**
+     * @return array
+     */
+    public function list() : string;
 }

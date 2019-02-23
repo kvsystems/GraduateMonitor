@@ -26,4 +26,12 @@ class OffCommand implements ICommand {
     public function pid(): int  {
         return 0;
     }
+
+    /**
+     * Gets a list of identifiers.
+     * @return string
+     */
+    public function list(): string   {
+        return '';
+    }
 }

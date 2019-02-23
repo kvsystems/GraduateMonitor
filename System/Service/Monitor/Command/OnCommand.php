@@ -3,7 +3,6 @@ namespace Evie\Monitor\System\Service\Monitor\Command;
 
 use Evie\Monitor\System\Request\Keys\KeysFactory;
 use Evie\Monitor\System\Request\Request;
-use Evie\Monitor\System\Service\Monitor\Background\BackgroundProcess;
 
 /**
  * Class OnCommand.
@@ -59,6 +58,10 @@ class OnCommand implements ICommand {
         return 0;
     }
 
+    /**
+     * Gets a list of identifiers.
+     * @return string
+     */
     public function list(): string  {
         return implode( ',', $this->_list);
     }

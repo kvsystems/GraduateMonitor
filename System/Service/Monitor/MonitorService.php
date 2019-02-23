@@ -124,17 +124,20 @@ class MonitorService extends GenericService {
      */
     public function watch() : bool {
         while(true)   {
-
             $process = new BackgroundProcess();
             $processes = $process->processes();
             $ipAddresses = $process->ips();
 
+            var_dump($processes);
+            var_dump($ipAddresses);
+
             if(empty($processes)) break;
 
             for($i = 0; $i < count($ipAddresses); $i++) {
-                if(!isset($processes[$i]) || @!posix_kill($processes[$i],0)) {
+
+                if(!isset($processes[$i]) || !posix_kill($processes[$i],0)) {
                     $this->request->set('ipa', KeysFactory::parameter('a', $ipAddresses[$i]));
-                    $pid = CommandFactory::command('start', $this->request)->execute();
+                    CommandFactory::command('start', $this->request)->execute();
                 }
             }
 

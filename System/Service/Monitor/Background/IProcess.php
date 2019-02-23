@@ -33,4 +33,9 @@ interface IProcess {
      */
     public function ips() : string;
 
+    /**
+     * Gets watcher processes.
+     * @return string
+     */
+    public function watch() : string;
 }

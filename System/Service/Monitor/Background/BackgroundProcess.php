@@ -36,7 +36,6 @@ class BackgroundProcess {
      */
     public function ipa()   {
         $out = preg_split('/\s+/', trim($this->_process->ipa()));
-        array_pop($out);
         return array_values(array_unique($out));
     }
 
@@ -104,7 +103,7 @@ class BackgroundProcess {
      */
     public function stop() : bool   {
         try {
-            $result = shell_exec(sprintf('kill %d 2>&1', $this->_pid));
+            $result = shell_exec(sprintf('kill -9 %d 2>&1', $this->_pid));
             if (!preg_match('/No such process/', $result)) {
                 return true;
             }

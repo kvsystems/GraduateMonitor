@@ -39,4 +39,12 @@ class DefaultProcess implements IProcess {
     public function ips() : string {
         return '';
     }
+
+    /**
+     * Gets watcher processes.
+     * @return string
+     */
+    public function watch(): string {
+        return '';
+    }
 }

@@ -54,8 +54,8 @@ class UnixProcess implements IProcess {
      * @return string
      */
     public function ips() : string {
-        return shell_exec(
+        return preg_replace("/[^,.0-9]/", '', shell_exec(
             "ps -aux | grep index.php | grep monitor/watch | awk '{print $20}'"
-        );
+        ));
     }
 }

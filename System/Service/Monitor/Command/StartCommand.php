@@ -48,16 +48,9 @@ class StartCommand implements ICommand {
             $process->run('php ' . ROOT_DIR . 'index.php -m monitor -r monitor/poll -a ' . $ipa);
         }
 
-        if(!empty($watcher)) {
-            $watchProcess = new BackgroundProcess($watcher[0]);
-            $watchProcess->stop();
-        }
-
         if($process->getPid() > 0) $processes[] = $process->getPid();
 
         $real = $process->ipa();
-        $real[] = $ipa;
-
         $subProcess = new BackgroundProcess();
 
         $command = 'php ' . ROOT_DIR . 'index.php -m monitor -r monitor/watch -l ';
@@ -67,6 +60,12 @@ class StartCommand implements ICommand {
         $subProcess->run($command);
 
         $this->_pid = $process->getPid();
+
+        if(!empty($watcher)) {
+            $watchProcess = new BackgroundProcess($watcher[0]);
+            $watchProcess->stop();
+        }
+
         return $this->_pid ? true : false;
     }
 
@@ -76,6 +75,14 @@ class StartCommand implements ICommand {
      */
     public function pid(): int  {
         return $this->_pid;
+    }
+
+    /**
+     * Gets a list of identifiers.
+     * @return string
+     */
+    public function list(): string   {
+        return '';
     }
 
 }

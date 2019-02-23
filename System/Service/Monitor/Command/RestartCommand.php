@@ -61,4 +61,12 @@ class RestartCommand implements ICommand {
     public function pid(): int  {
         return $this->_pid;
     }
+
+    /**
+     * Gets a list of identifiers.
+     * @return string
+     */
+    public function list(): string   {
+        return '';
+    }
 }
