@@ -53,6 +53,15 @@ abstract class Transmit {
     }
 
     /**
+     * Checks answer curl.
+     * @param resource $curl
+     * @return bool
+     */
+    protected function success($curl)  : bool  {
+        return is_resource($curl) && curl_getinfo($curl, CURLINFO_HTTP_CODE) == 200 ? true : false;
+    }
+
+    /**
      * Sends query.
      * @return bool
      */

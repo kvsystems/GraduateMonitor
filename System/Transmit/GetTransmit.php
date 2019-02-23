@@ -25,10 +25,7 @@ class GetTransmit extends Transmit {
                     'Content-Type: application/json')
             );
             $out = curl_exec($curl);
-
-            $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-            if($http_code != 200) $out = false;
-
+            if(!$this->success($curl)) $out = false;
             curl_close($curl);
         }
         return $out;

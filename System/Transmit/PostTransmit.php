@@ -26,10 +26,7 @@ class PostTransmit extends Transmit {
                     'Content-Length: ' . strlen(json_encode($this->data)))
             );
             $out = curl_exec($curl);
-
-            $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-            if($http_code != 200) $out = false;
-
+            if(!$this->success($curl)) $out = false;
             curl_close($curl);
         }
         return $out;
